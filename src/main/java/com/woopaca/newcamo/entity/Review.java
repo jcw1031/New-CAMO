@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.entity;
 
+import com.woopaca.newcamo.entity.cafe.Cafe;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

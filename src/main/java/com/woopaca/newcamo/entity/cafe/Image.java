@@ -1,4 +1,4 @@
-package com.woopaca.newcamo.entity;
+package com.woopaca.newcamo.entity.cafe;
 
 import lombok.AccessLevel;
 import lombok.Builder;
