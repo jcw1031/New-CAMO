@@ -1,4 +1,4 @@
-package com.woopaca.newcamo.service;
+package com.woopaca.newcamo.service.impl;
 
 import com.woopaca.newcamo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.entity;
 
+import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
 import com.woopaca.newcamo.entity.cafe.Cafe;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -57,6 +59,15 @@ public class User implements UserDetails {
         this.password = password;
         this.name = name;
         this.phone = phone;
+    }
+
+    public static User from(final SignUpRequestDto signUpRequestDto) {
+        return User.builder()
+                .email(signUpRequestDto.getEmail())
+                .password(BCrypt.hashpw(signUpRequestDto.getPassword(), BCrypt.gensalt()))
+                .name(signUpRequestDto.getName())
+                .phone(signUpRequestDto.getPhone())
+                .build();
     }
 
     @Override
