@@ -8,6 +8,7 @@ import com.woopaca.newcamo.entity.User;
 import com.woopaca.newcamo.exception.user.DuplicateEmailException;
 import com.woopaca.newcamo.exception.user.InvalidCheckPassword;
 import com.woopaca.newcamo.exception.user.InvalidSignInUser;
+import com.woopaca.newcamo.exception.user.NotValidateDuplicateEmail;
 import com.woopaca.newcamo.repository.UserRepository;
 import com.woopaca.newcamo.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,11 @@ public class BasicUserService implements UserService {
     }
 
     private User validateSignUpUser(final SignUpRequestDto signUpRequestDto) {
+        Boolean isExists = userRepository.existsByEmail(signUpRequestDto.getEmail());
+        if (isExists) {
+            throw new NotValidateDuplicateEmail();
+        }
+
         String password = signUpRequestDto.getPassword();
         String checkPassword = signUpRequestDto.getCheckPassword();
         if (!password.equals(checkPassword)) {

@@ -1,11 +1,13 @@
 package com.woopaca.newcamo.exception.user;
 
-import lombok.AllArgsConstructor;
+import com.woopaca.newcamo.exception.CamoError;
+import com.woopaca.newcamo.exception.CamoException;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
-public abstract class UserException extends RuntimeException {
+public abstract class UserException extends CamoException {
 
-    private UserError userError;
+    public UserException(CamoError camoError) {
+        super(camoError);
+    }
 }
