@@ -14,9 +14,11 @@ import com.woopaca.newcamo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BasicUserService implements UserService {
 
     private final UserRepository userRepository;
@@ -30,6 +32,7 @@ public class BasicUserService implements UserService {
     }
 
     @Override
+    @Transactional
     public Long signUp(final SignUpRequestDto signUpRequestDto) {
         User user = validateSignUpUser(signUpRequestDto);
         User savedUser = userRepository.save(user);

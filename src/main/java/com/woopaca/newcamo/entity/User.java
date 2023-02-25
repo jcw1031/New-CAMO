@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,11 +55,12 @@ public class User implements UserDetails {
     private List<Employment> employers = new ArrayList<>();
 
     @Builder
-    public User(String email, String password, String name, String phone) {
+    public User(String email, String password, String name, String phone, List<String> roles) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phone = phone;
+        this.roles = roles;
     }
 
     public static User from(final SignUpRequestDto signUpRequestDto) {
@@ -67,9 +69,10 @@ public class User implements UserDetails {
                 .password(BCrypt.hashpw(signUpRequestDto.getPassword(), BCrypt.gensalt()))
                 .name(signUpRequestDto.getName())
                 .phone(signUpRequestDto.getPhone())
+                .roles(Collections.singletonList("ROLE_USER"))
                 .build();
     }
-
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(SimpleGrantedAuthority::new)
