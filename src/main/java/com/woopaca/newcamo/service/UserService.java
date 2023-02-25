@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.service;
 
+import com.woopaca.newcamo.controller.dto.SignInRequestDto;
 import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
 import com.woopaca.newcamo.controller.dto.ValidateDuplicateEmailDto;
 
@@ -9,5 +10,5 @@ public interface UserService {
 
     Long signUp(final SignUpRequestDto signUpRequestDto);
 
-    String signIn();
+    String signIn(final SignInRequestDto signInRequestDto);
 }

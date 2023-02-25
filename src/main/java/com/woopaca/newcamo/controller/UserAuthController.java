@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.controller;
 
+import com.woopaca.newcamo.controller.dto.SignInRequestDto;
 import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
 import com.woopaca.newcamo.controller.dto.ValidateDuplicateEmailDto;
 import com.woopaca.newcamo.service.UserService;
@@ -29,9 +30,17 @@ public class UserAuthController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<String> userSignUp(@RequestBody @Valid final SignUpRequestDto signUpRequestDto) {
+    public ResponseEntity<String> userSignUp(
+            @RequestBody @Valid final SignUpRequestDto signUpRequestDto) {
         Long signUpUserId = userService.signUp(signUpRequestDto);
         return ResponseEntity.created(URI.create("/api/v1/users/" + signUpUserId))
                 .body("회원가입이 완료되었습니다.");
+    }
+
+    @PostMapping("/sign-in")
+    public ResponseEntity<String> userSignIn(
+            @RequestBody @Valid final SignInRequestDto signInRequestDto) {
+        String token = userService.signIn(signInRequestDto);
+        return ResponseEntity.ok().body(token);
     }
 }
