@@ -1,6 +1,6 @@
 package com.woopaca.newcamo.entity;
 
-import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
+import com.woopaca.newcamo.controller.dto.user.SignUpRequestDto;
 import com.woopaca.newcamo.entity.cafe.Cafe;
 import lombok.AccessLevel;
 import lombok.Builder;

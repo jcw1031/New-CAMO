@@ -1,8 +1,8 @@
 package com.woopaca.newcamo.controller;
 
-import com.woopaca.newcamo.controller.dto.SignInRequestDto;
-import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
-import com.woopaca.newcamo.controller.dto.ValidateDuplicateEmailDto;
+import com.woopaca.newcamo.controller.dto.user.SignInRequestDto;
+import com.woopaca.newcamo.controller.dto.user.SignUpRequestDto;
+import com.woopaca.newcamo.controller.dto.user.ValidateDuplicateEmailDto;
 import com.woopaca.newcamo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.woopaca.newcamo.controller.dto;
+package com.woopaca.newcamo.controller.dto.user;
 
 import lombok.AccessLevel;
 import lombok.Getter;

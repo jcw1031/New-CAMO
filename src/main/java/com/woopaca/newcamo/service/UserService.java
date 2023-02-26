@@ -1,8 +1,8 @@
 package com.woopaca.newcamo.service;
 
-import com.woopaca.newcamo.controller.dto.SignInRequestDto;
-import com.woopaca.newcamo.controller.dto.SignUpRequestDto;
-import com.woopaca.newcamo.controller.dto.ValidateDuplicateEmailDto;
+import com.woopaca.newcamo.controller.dto.user.SignInRequestDto;
+import com.woopaca.newcamo.controller.dto.user.SignUpRequestDto;
+import com.woopaca.newcamo.controller.dto.user.ValidateDuplicateEmailDto;
 
 public interface UserService {
 
