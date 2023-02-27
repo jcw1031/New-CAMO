@@ -6,13 +6,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
-@RequestMapping("/cafes")
+@RequestMapping("/api/v1/cafes")
 @RequiredArgsConstructor
 public class CafeController {
 
@@ -20,7 +22,10 @@ public class CafeController {
 
     @PostMapping("")
     public ResponseEntity<String> cafeRegister(
-            @RequestBody @Valid final CafeRegisterRequestDto cafeRegisterRequestDto) {
-        cafeService.register(cafeRegisterRequestDto);
+            @RequestBody @Valid final CafeRegisterRequestDto cafeRegisterRequestDto,
+            @RequestHeader("Authorization") final String authorization) {
+        Long cafeId = cafeService.register(cafeRegisterRequestDto, authorization);
+        return ResponseEntity.created(URI.create("/api/v1/cafes/" + cafeId))
+                .body("카페 등록 완료");
     }
 }

@@ -72,7 +72,21 @@ public class User implements UserDetails {
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
     }
-    
+
+    public void addUserRoleOwner() {
+        if (roles.contains("ROLE_OWNER")) {
+            return;
+        }
+        roles.add("ROLE_OWNER");
+    }
+
+    public void addUserRoleStaff() {
+        if (roles.contains("ROLE_STAFF")) {
+            return;
+        }
+        roles.add("ROLE_STAFF");
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(SimpleGrantedAuthority::new)

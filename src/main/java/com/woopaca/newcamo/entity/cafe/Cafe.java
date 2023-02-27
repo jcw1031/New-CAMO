@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.entity.cafe;
 
+import com.woopaca.newcamo.controller.dto.cafe.CafeRegisterRequestDto;
 import com.woopaca.newcamo.entity.Employment;
 import com.woopaca.newcamo.entity.Review;
 import com.woopaca.newcamo.entity.User;
@@ -61,6 +62,15 @@ public class Cafe {
         this.cafeIntroduction = cafeIntroduction;
         this.cafeReward = cafeReward;
         this.cafeRewardStampsNumber = cafeRewardStampsNumber;
+    }
+
+    public static Cafe from(final CafeRegisterRequestDto cafeRegisterRequestDto) {
+        return Cafe.builder()
+                .cafeName(cafeRegisterRequestDto.getCafeName())
+                .cafeAddress(cafeRegisterRequestDto.getCafeAddress())
+                .cafePhone(cafeRegisterRequestDto.getCafePhone())
+                .cafeIntroduction(cafeRegisterRequestDto.getCafeIntroduction())
+                .build();
     }
 
     public void setOwner(User user) {

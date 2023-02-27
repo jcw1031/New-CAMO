@@ -1,5 +1,6 @@
 package com.woopaca.newcamo.config.jwt;
 
+import com.woopaca.newcamo.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -62,5 +63,13 @@ public class JwtUtils {
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
+    }
+
+    public User getUserOfToken(String token) {
+        String email = Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody().getSubject();
+        return (User) userDetailsService.loadUserByUsername(email);
     }
 }
